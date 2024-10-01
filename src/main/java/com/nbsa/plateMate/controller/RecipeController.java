@@ -22,7 +22,7 @@ public class RecipeController {
     @GetMapping
     public String getAllRecipes(Model model) {
         // Logic to fetch recipes (this could call a service layer)
-        List<Recipe> recipes = recipeService.fetchAllServices(); // Call service to fetch all recipes
+        List<Recipe> recipes = recipeService.fetchAllRecipes(); // Call service to fetch all recipes
         model.addAttribute("recipes", recipes); // Add the list of recipes to the model
 
         // Return the name of the view template (e.g., recipes.html)
