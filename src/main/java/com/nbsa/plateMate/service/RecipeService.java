@@ -22,13 +22,15 @@ public class RecipeService {
     }
 
     public List<Recipe> fetchAllRecipes() {
-        // Call Spoonacular API to fetch all recipes
-        String apiUrl = "https://api.spoonacular.com/recipes?apiKey=" + apiKey; // Adjust the URL as needed
-        RecipeResponse recipeResponse = restTemplate.getForObject(apiUrl, RecipeResponse.class);
+        if (recipes.isEmpty()) {
+            // Call Spoonacular API to fetch all recipes
+            String apiUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=" + apiKey + "&number=25"; // Fetch 25 recipes
+            RecipeResponse recipeResponse = restTemplate.getForObject(apiUrl, RecipeResponse.class);
 
-        // Convert JSON response to List<Recipe>
-        if (recipeResponse != null && recipeResponse.getRecipes() != null) {
-            recipes.addAll(recipeResponse.getRecipes());
+            // Convert JSON response to List<Recipe>
+            if (recipeResponse != null && recipeResponse.getRecipes() != null) {
+                recipes.addAll(recipeResponse.getRecipes());
+            }
         }
 
         return recipes;
