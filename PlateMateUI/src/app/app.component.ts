@@ -8,6 +8,8 @@ import { ApiService } from '../../services/api.service';  // Import the service
 })
 export class AppComponent implements OnInit {
 
+  title ="PlateMate"
+
   data: any;
 
   constructor(private apiService: ApiService) { }
@@ -17,5 +19,9 @@ export class AppComponent implements OnInit {
       this.data = response;
       console.log(this.data);
     });
+  }
+
+  testClick() {
+    alert('Button clicked!');
   }
 }
